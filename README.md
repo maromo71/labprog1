@@ -23,7 +23,7 @@ O padrão de avaliação segue o critério da IES:
 
 - 1º Bimestre: Avaliação escrita (80%) e Trabalho prático (20%)
 - 2º Bimestre: Avaliação escrita (85%) e Trabalho prático (15%)
-- A média é calculada como: \(((Nota do 1º Bimestre \times 1) + (Nota do 2º Bimestre \times 2)) / 3\). Para aprovação, a média deve ser \(\geq 5\).
+- A média é calculada como: (((Nota do 1º Bimestre X 1) + (Nota do 2º Bimestre X 2)) / 3). Para aprovação, a média deve ser >= 5.
 
 ## Bibliografia
 
