@@ -103,22 +103,34 @@ public class CaixaGUI extends JFrame implements ActionListener {
         }
         if(e.getSource()==cmdEntrada){
             //deposito
-            double valor = Double.parseDouble(txtValor.getText());
-            caixa.depositar(valor);
-            txtMsg.append("Depósito efetuado com sucesso\n");
-            txtValor.setText(null);
-            txtSaldo.setText(null);
-            txtValor.requestFocus(); //colocar o foco no valor
-            return;
+            try{
+                double valor = Double.parseDouble(txtValor.getText());
+                caixa.depositar(valor);
+                txtMsg.append("Depósito efetuado com sucesso\n");
+                txtValor.setText(null);
+                txtSaldo.setText(null);
+                txtValor.requestFocus(); //colocar o foco no valor
+                return;
+            }catch (Exception ex){
+                JOptionPane.showMessageDialog(null,
+                        ex.getMessage(), "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
         if(e.getSource()==cmdRetirada){
             //retirada
-            double valor = Double.parseDouble(txtValor.getText());
-            caixa.sacar(valor);
-            txtMsg.append("Saque efetuado com sucesso\n");
-            txtValor.setText(null);
-            txtSaldo.setText(null);
-            txtValor.requestFocus(); //colocar o foco no valor
+           try{
+               double valor = Double.parseDouble(txtValor.getText());
+               caixa.sacar(valor);
+               txtMsg.append("Saque efetuado com sucesso\n");
+               txtValor.setText(null);
+               txtSaldo.setText(null);
+               txtValor.requestFocus(); //colocar o foco no valor
+           }catch (Exception ex){
+               JOptionPane.showMessageDialog(null,
+                       ex.getMessage(), "Erro",
+                       JOptionPane.ERROR_MESSAGE);
+           }
         }
     }
 }
