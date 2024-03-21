@@ -77,5 +77,33 @@ public class AlunoGUI {
                 );
             }
         });
+        excluirButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(txtRa.getText().isEmpty()) {
+                    return;
+                }
+                int raProc = Integer.parseInt(txtRa.getText());
+                //varrer a lista a procura do ra digitado
+                for(Aluno aluno : listaAlunos){
+                    if(aluno.getRa()==raProc){
+                        listaAlunos.remove(aluno);
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Aluno excluído com sucesso",
+                        "Sucesso",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
+        sairButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.exit(0);
+            }
+        });
     }
 }
