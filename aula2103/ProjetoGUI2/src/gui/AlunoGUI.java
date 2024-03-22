@@ -40,11 +40,7 @@ public class AlunoGUI {
                 String email = txtEmail.getText();
                 Aluno alu = new Aluno(ra, nome, turma, email);
                 listaAlunos.add(alu); //adicionado na lista
-                txtRa.setText(null);
-                txtNome.setText(null);
-                txtTurma.setText(null);
-                txtEmail.setText(null);
-                txtRa.requestFocus(); //colocar o foco no ra
+                limparForm();
                 JOptionPane.showMessageDialog(
                         null,
                         "Aluno cadastrado com sucesso",
@@ -61,14 +57,14 @@ public class AlunoGUI {
                 }
                 int raProc = Integer.parseInt(txtRa.getText());
                 //varrer a lista a procura do ra digitado
-                for(Aluno aluno : listaAlunos){
-                    if(aluno.getRa()==raProc){
-                        txtNome.setText(aluno.getNome());
-                        txtTurma.setText(aluno.getTurma());
-                        txtEmail.setText(aluno.getEmail());
+                Aluno alunoEncontrado = procurarAluno(raProc);
+                if(alunoEncontrado!=null){
+                        txtNome.setText(alunoEncontrado.getNome());
+                        txtTurma.setText(alunoEncontrado.getTurma());
+                        txtEmail.setText(alunoEncontrado.getEmail());
                         return;
-                    }
                 }
+
                 JOptionPane.showMessageDialog(
                         null,
                         "Aluno não encontrado",
@@ -85,11 +81,11 @@ public class AlunoGUI {
                 }
                 int raProc = Integer.parseInt(txtRa.getText());
                 //varrer a lista a procura do ra digitado
-                for(Aluno aluno : listaAlunos){
-                    if(aluno.getRa()==raProc){
-                        listaAlunos.remove(aluno);
-                        return;
-                    }
+                Aluno alunoAExcluir = procurarAluno(raProc);
+                if(alunoAExcluir!=null){
+                    listaAlunos.remove(alunoAExcluir);
+                    limparForm();
+                    return;
                 }
                 JOptionPane.showMessageDialog(
                         null,
@@ -105,5 +101,22 @@ public class AlunoGUI {
                 System.exit(0);
             }
         });
+    }
+
+    private Aluno procurarAluno(int raProc) {
+        for (Aluno aluno : listaAlunos){
+            if(raProc == aluno.getRa()){
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    private void limparForm() {
+        txtRa.setText(null);
+        txtNome.setText(null);
+        txtTurma.setText(null);
+        txtEmail.setText(null);
+        txtRa.requestFocus(); //colocar o foco no ra
     }
 }
