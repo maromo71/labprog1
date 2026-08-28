@@ -1,4 +1,7 @@
 package model;
+
+import exception.ContaException;
+
 public class Conta {
     //Atributos
     private int numConta;
@@ -45,10 +48,16 @@ public class Conta {
     }
 
     //Metodos de negocios
-    public void sacar(double valor){
+    public void sacar(double valor) throws ContaException{
+        if(valor > saldo) {
+            throw new ContaException(1);
+        }
         this.saldo -= valor;
     }
-    public void depositar(double valor){
+    public void depositar(double valor) throws ContaException{
+        if(valor <= 0){
+            throw new ContaException(2);
+        }
         this.saldo += valor;
     }
     public void emitirSaldo(){

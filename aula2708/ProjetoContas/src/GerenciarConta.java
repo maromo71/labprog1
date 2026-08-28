@@ -51,6 +51,8 @@ public class GerenciarConta {
         System.out.println("Conta cadastrada com sucesso");
     }
 
+    // Este metodo deve ser refatorada para devolver uma conta buscada
+    // ou nulo quando nao tivermos conta.
     public void execBuscarConta() {
         System.out.println("Digite o numero da conta a ser encontrada: ");
         int numConta = Integer.parseInt(sc.nextLine());
@@ -76,37 +78,46 @@ public class GerenciarConta {
     }
 
     public void execDepositar() {
-        System.out.println("Digite o numero da conta a depositar: ");
-        int numConta = Integer.parseInt(sc.nextLine());
-        // percorrer a lista de contas a procura da conta digitada
-        for (Conta conta : contas) {
-            if (numConta == conta.getNumConta()) {
-                System.out.println("Digite o valor do deposito: ");
-                double valor = Double.parseDouble(sc.nextLine());
-                conta.depositar(valor);
-                System.out.println("Deposito efetuado com sucesso");
-                return; // volta pro menu
+        try {
+            System.out.println("Digite o numero da conta a depositar: ");
+            int numConta = Integer.parseInt(sc.nextLine());
+            // percorrer a lista de contas a procura da conta digitada
+            for (Conta conta : contas) {
+                if (numConta == conta.getNumConta()) {
+                    System.out.println("Digite o valor do deposito: ");
+                    double valor = Double.parseDouble(sc.nextLine());
+                    conta.depositar(valor);
+                    System.out.println("Deposito efetuado com sucesso");
+                    return; // volta pro menu
+                }
             }
+            // se conta nao encontrada
+            System.out.println("Conta nao existente na lista");
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
         }
-        // se conta nao encontrada
-        System.out.println("Conta nao existente na lista");
     }
 
     public void execSacar() {
-        System.out.println("Digite o numero da conta a ser sacada: ");
-        int numConta = Integer.parseInt(sc.nextLine());
-        // percorrer a lista de contas a procura da conta digitada
-        for (Conta conta : contas) {
-            if (numConta == conta.getNumConta()) {
-                System.out.println("Digite o valor do saque: ");
-                double valor = Double.parseDouble(sc.nextLine());
-                conta.sacar(valor);
-                System.out.println("Saque efetuado com sucesso");
-                return; // volta pro menu
+        try {
+            System.out.println("Digite o numero da conta a ser sacada: ");
+            int numConta = Integer.parseInt(sc.nextLine());
+            // percorrer a lista de contas a procura da conta digitada
+            for (Conta conta : contas) {
+                if (numConta == conta.getNumConta()) {
+                    System.out.println("Digite o valor do saque: ");
+                    double valor = Double.parseDouble(sc.nextLine());
+                    conta.sacar(valor);
+                    System.out.println("Saque efetuado com sucesso");
+                    return; // volta pro menu
+                }
             }
+            // se conta nao encontrada
+            System.out.println("Conta nao existente na lista");
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
         }
-        // se conta nao encontrada
-        System.out.println("Conta nao existente na lista");
+
     }
 
     public void execSaldo() {
