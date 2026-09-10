@@ -3,13 +3,16 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.Caixa;
 
 import java.awt.*;
-public class CaixaView extends JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class CaixaView extends JFrame implements ActionListener {
     //atributos referentes ao tamanho dos elementos
     private Dimension dFrame, dButton, dTextField, dTextArea, dLabel;
     //atributos referentes aos elementos que estao na janela
@@ -18,7 +21,7 @@ public class CaixaView extends JFrame {
     private JButton btnDepositar, btnSacar, btnSaldo, btnSair;
     private JTextArea txtMsg;
     //atributo com nossas regras de negocio
-    private Caixa caixa;
+    private Caixa caixa = new Caixa();
 
     public CaixaView(){
         //definir os elementos na janela, posicionamento e tamanhos
@@ -59,27 +62,58 @@ public class CaixaView extends JFrame {
         btnDepositar = new JButton("Depositar");
         btnDepositar.setSize(dButton);
         btnDepositar.setLocation(25, 150);
+        btnDepositar.addActionListener(this);
         add(btnDepositar);
 
         btnSacar = new JButton("Sacar");
         btnSacar.setSize(dButton);
         btnSacar.setLocation(180, 150);
+        btnSacar.addActionListener(this);
         add(btnSacar);
 
         btnSaldo = new JButton("Consultar");
         btnSaldo.setSize(dButton);
         btnSaldo.setLocation(25, 185);
+        btnSaldo.addActionListener(this);
         add(btnSaldo);
 
         btnSair = new JButton("Sair");
         btnSair.setSize(dButton);
         btnSair.setLocation(180,185);
+        btnSair.addActionListener(this);
         add(btnSair);
 
         txtMsg = new JTextArea("");
         txtMsg.setSize(dTextArea);
         txtMsg.setLocation(25, 215);
         add(txtMsg);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==btnSair){
+            JOptionPane.showMessageDialog(null, "Fim");
+            System.exit(0);
+        }
+        if(e.getSource()==btnDepositar){
+            double valor = Double.parseDouble(txtValor.getText());
+            caixa.depositar(valor);
+            txtMsg.append("Deposito efetuado com sucesso\n");
+            txtValor.setText("");
+            txtValor.requestFocus();//requer o foco
+            return;
+        }
+        if(e.getSource()==btnSacar){
+            double valor = Double.parseDouble(txtValor.getText());
+            caixa.sacar(valor);
+            txtMsg.append("Saque efetuado com sucesso\n");
+            txtValor.setText("");
+            txtValor.requestFocus();
+            return;
+        }
+        if(e.getSource()==btnSaldo){
+            txtSaldo.setText(Double.toString(caixa.getSaldo()));
+        }
     }
 
 }
