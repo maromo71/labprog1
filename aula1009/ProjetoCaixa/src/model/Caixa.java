@@ -1,5 +1,7 @@
 package model;
 
+import exception.CaixaException;
+
 public class Caixa {
     private double saldo;
 
@@ -11,7 +13,10 @@ public class Caixa {
         saldo += valor;
     }
 
-    public void sacar(double valor){
+    public void sacar(double valor) throws CaixaException{
+        if(valor > saldo){
+            throw new CaixaException(1);
+        }
         saldo -= valor;
     }
 }
