@@ -1,0 +1,11 @@
+{
+    "java.jdt.ls.java.home": "C:\\Users\\memar\\.jdks\\temurin-21.0.12-x64",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "C:\\Users\\memar\\.jdks\\temurin-21.0.12-x64",
+            "default": true
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Executar Main (JavaFX)",
+            "request": "launch",
+            "mainClass": "com.exemplo.Main",
+            "projectName": "calculadora-javafx",
+            "javaExec": "C:\\Users\\memar\\.jdks\\temurin-21.0.12-x64\\bin\\java.exe"
+        },
+        {
+            "type": "java",
+            "name": "Executar App (JavaFX)",
+            "request": "launch",
+            "mainClass": "com.exemplo.App",
+            "projectName": "calculadora-javafx",
+            "javaExec": "C:\\Users\\memar\\.jdks\\temurin-21.0.12-x64\\bin\\java.exe",
+            "vmArgs": "--add-modules javafx.controls,javafx.graphics"
+        }
+    ]
+}
